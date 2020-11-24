@@ -44,6 +44,11 @@ class User
      */
     private $projects;
 
+    /**
+     * @ORM\Column(type="string", length=30)
+     */
+    private $password;
+
     public function __construct()
     {
         $this->projects = new ArrayCollection();
@@ -128,6 +133,18 @@ class User
                 $project->setUser(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getPassword(): ?string
+    {
+        return $this->password;
+    }
+
+    public function setPassword(string $password): self
+    {
+        $this->password = $password;
 
         return $this;
     }

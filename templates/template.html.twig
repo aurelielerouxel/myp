@@ -2,25 +2,25 @@
 
 {% block body %}
 
-    <header class="jumbotron jumbotron-fluid mb-0">
-        <section class="container">
+    <header class="jumbotron jumbotron-fluid mb-0 bg-dark text-white">
+        <section class="container text-center">
             <h1 class="display-4">Manage Your Project</h1>
             <p class="lead">Avant de construire votre projet, dessinez vos plans.</p>
         </section>
     </header>
 
-    <nav class="nav nav-pills nav-fill mb-5">
+    <nav class="nav nav-pills nav-fill mb-5 bg-danger">
         <li class="nav-item">
-            <a class="nav-link active" href="#">Active</a>
+            <a class="nav-link text-white" href="{{ path("home") }}">Acceuil</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="#">Much longer nav link</a>
+            <a class="nav-link text-white" href="#">Much longer nav link</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="#">Link</a>
+            <a class="nav-link text-white" href="#">Link</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+            <a class="nav-link text-white" href="#">Disabled</a>
         </li>
     </nav>
 
@@ -28,9 +28,9 @@
         {% block main %}{% endblock %}
     </main>
 
-    <footer class="jumbotron jumbotron-fluid">
+    <footer class="jumbotron jumbotron-fluid bg-dark text-white">
         <div class="container">
-            <p class="lead">Une application développée par OKALME.fr, tous droits réservés.</p>
+            <p class="lead">Une application développée par okALme.fr, tous droits réservés.</p>
         </div>
     </footer>
 
