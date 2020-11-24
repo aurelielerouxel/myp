@@ -9,12 +9,11 @@ use Symfony\Component\Routing\Annotation\Route;
 class MypController extends AbstractController
 {
     /**
-     * @Route("/myp", name="myp")
+     * @Route("/acceuil", name="home")
+     * @Route("/", name="root")
      */
     public function index(): Response
     {
-        return $this->render('myp/index.html.twig', [
-            'controller_name' => 'MypController',
-        ]);
+        return $this->render('myp/index.html.twig');
     }
 }

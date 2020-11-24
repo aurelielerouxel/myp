@@ -1,0 +1,22 @@
+{% extends 'base.html.twig'%}
+
+{% block body %}
+
+    <header class="jumbotron jumbotron-fluid">
+        <section class="container">
+            <h1 class="display-4">Manage Your Project</h1>
+            <p class="lead">Avant de construire votre projet, dessinez vos plans.</p>
+        </section>
+    </header>
+
+    <main class="container">
+        {% block main %}{% endblock %}
+    </main>
+
+    <footer class="jumbotron jumbotron-fluid">
+        <div class="container">
+            <p class="lead">Une application développée par OKALME.fr, tous droits réservés.</p>
+        </div>
+    </footer>
+
+{% endblock %}
