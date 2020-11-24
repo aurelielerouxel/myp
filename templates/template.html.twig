@@ -2,12 +2,27 @@
 
 {% block body %}
 
-    <header class="jumbotron jumbotron-fluid">
+    <header class="jumbotron jumbotron-fluid mb-0">
         <section class="container">
             <h1 class="display-4">Manage Your Project</h1>
             <p class="lead">Avant de construire votre projet, dessinez vos plans.</p>
         </section>
     </header>
+
+    <nav class="nav nav-pills nav-fill mb-5">
+        <li class="nav-item">
+            <a class="nav-link active" href="#">Active</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#">Much longer nav link</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#">Link</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+        </li>
+    </nav>
 
     <main class="container">
         {% block main %}{% endblock %}
