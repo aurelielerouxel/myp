@@ -15,14 +15,14 @@ use Symfony\Component\Routing\Annotation\Route;
  */
 class ProjectController extends AbstractController
 {
-    /**
-     * @Route("/acceuil", name="home")
-     * @Route("/", name="root")
-     */
-    public function index(): Response
-    {
-        return $this->render('myp/index.html.twig');
-    }
+    // /**
+    //  * @Route("/acceuil", name="home")
+    //  * @Route("/", name="root")
+    //  */
+    // public function index(): Response
+    // {
+    //     return $this->render('myp/index.html.twig');
+    // }
 
 
     /**
