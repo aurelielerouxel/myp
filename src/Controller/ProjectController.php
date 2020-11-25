@@ -16,9 +16,19 @@ use Symfony\Component\Routing\Annotation\Route;
 class ProjectController extends AbstractController
 {
     /**
+     * @Route("/acceuil", name="home")
+     * @Route("/", name="root")
+     */
+    public function index(): Response
+    {
+        return $this->render('myp/index.html.twig');
+    }
+
+
+    /**
      * @Route("/", name="project_index", methods={"GET"})
      */
-    public function index(ProjectRepository $projectRepository): Response
+    public function projects(ProjectRepository $projectRepository): Response
     {
         return $this->render('project/index.html.twig', [
             'projects' => $projectRepository->findAll(),
