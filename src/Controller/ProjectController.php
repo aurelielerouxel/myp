@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Project;
+use\App\Entity\Task;
 use App\Form\ProjectType;
 use App\Repository\ProjectRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -65,12 +66,23 @@ class ProjectController extends AbstractController
     }
 
     /**
+     * Require ROLE_USER for only this controller method.
+     * @IsGranted("ROLE_USER")
      * @Route("/{id}", name="project_show", methods={"GET"})
      */
-    public function show(Project $project): Response
+    public function show(Project $project, int $id): Response
     {
+        $projectRepository = $this->getDoctrine()->getRepository(Project::class);
+        $project = $projectRepository->find($id);
+        dump($project);
+        $taskRepository = $this->getDoctrine()->getRepository(Task::class);
+        $task = $taskRepository->findBy([
+            'project'=>$project
+        ]);
+        dump($task);
         return $this->render('project/show.html.twig', [
             'project' => $project,
+            'task' => $task
         ]);
     }
 

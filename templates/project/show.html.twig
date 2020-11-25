@@ -1,16 +1,17 @@
-{% extends 'base.html.twig' %}
+{% extends 'template.html.twig' %}
 
-{% block title %}Project{% endblock %}
+{% block title %}Consulter le projet{% endblock %}
 
-{% block body %}
-    <h1>Project</h1>
+{% block main %}
+    <h1>Consulter le projet : </h1>
+    <a href="{{ path('task_new') }}">Créer un nouveau projet</a>
 
     <table class="table">
         <tbody>
-            <tr>
+            {# <tr>
                 <th>Id</th>
                 <td>{{ project.id }}</td>
-            </tr>
+            </tr> #}
             <tr>
                 <th>Project_name</th>
                 <td>{{ project.projectName }}</td>
