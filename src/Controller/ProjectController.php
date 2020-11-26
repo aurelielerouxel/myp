@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Project;
 use\App\Entity\Task;
+use\App\Entity\User;
 use App\Form\ProjectType;
 use App\Repository\ProjectRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
