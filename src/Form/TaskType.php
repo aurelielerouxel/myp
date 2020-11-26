@@ -17,7 +17,7 @@ class TaskType extends AbstractType
             ->add('task_creation_date')
             ->add('task_deadline')
             ->add('task_status')
-            ->add('project')
+            // ->add('project')
         ;
     }
 

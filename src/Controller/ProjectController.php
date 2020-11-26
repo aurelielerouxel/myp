@@ -68,7 +68,7 @@ class ProjectController extends AbstractController
     /**
      * Require ROLE_USER for only this controller method.
      * @IsGranted("ROLE_USER")
-     * @Route("/{id}", name="project_show", methods={"GET"})
+     * @Route("/{id}", name="project_show")
      */
     public function show(Project $project, int $id): Response
     {
