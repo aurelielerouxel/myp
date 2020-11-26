@@ -3,6 +3,12 @@
 {% block title %}Vos projets{% endblock %}
 
 {% block main %}
+    {% if app.user %}
+        <div class="mb-5 text-center">
+            Bonjour, vous êtes connécté sur le compte : {{ app.user.username }}, <a class="text-danger" href="{{ path('app_logout') }}">Déconnexion</a>
+        </div>
+    {% endif %}
+
     <h1 class="text-center">Voir vos projets</h1>
     <a href="{{ path('project_new') }}">Créer un nouveau projet</a>
 

@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Project;
+use App\Entity\User;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -17,6 +18,23 @@ class ProjectRepository extends ServiceEntityRepository
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Project::class);
+    }
+
+    public function getProject(int $id, User $user): ?Project
+    {
+        return $this->createQueryBuilder('p')
+            ->leftJoin("p.task", "t")
+            ->addSelect("t")
+            ->where('p.id = :id')
+            ->andWhere('p.user = :user')
+            ->setParameters([
+                "id"=>$id,
+                "user"=>$user
+            ])
+            ->orderBy("t.taskDeadline", "DESC")
+            ->getQuery()
+            ->getOneOrNullResult()
+        ;
     }
 
     // /**
