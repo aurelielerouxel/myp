@@ -108,6 +108,8 @@ class ProjectController extends AbstractController
     }
 
     /**
+     * Require ROLE_USER for only this controller method.
+     * @IsGranted("ROLE_USER")
      * @Route("/{id}", name="project_delete", methods={"DELETE"})
      */
     public function delete(Request $request, Project $project): Response
@@ -116,6 +118,16 @@ class ProjectController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($project);
             $entityManager->flush();
+            $this->addFlash(
+                'success',
+                'Votre projet a bien été supprimé'
+            );
+        }
+        else {
+            $this->addFlash(
+                'danger',
+                "Une erreur est survenue, nous n'avons pas pu supprimer votre projet"
+              );
         }
 
         return $this->redirectToRoute('project_index');

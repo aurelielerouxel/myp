@@ -33,7 +33,6 @@
             <table class="table mt-5">
                 <thead>
                     <tr>
-                        <th>Id</th>
                         <th>Task_name</th>
                         <th>Task_description</th>
                         <th>Task_creation_date</th>
@@ -45,7 +44,6 @@
                 <tbody>
                 {% for task in project.tasks %}
                     <tr>
-                        <td>{{ task.id }}</td>
                         <td>{{ task.taskName }}</td>
                         <td>{{ task.taskDescription }}</td>
                         <td>{{ task.taskCreationDate ? task.taskCreationDate|date('Y-m-d') : '' }}</td>

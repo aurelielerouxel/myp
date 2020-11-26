@@ -98,11 +98,31 @@ class TaskController extends AbstractController
         if ($this->isCsrfTokenValid('delete'.$task->getId(), $request->request->get('_token'))) {
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($task);
-            $entityManager->flush();
-            
-            
+            $entityManager->flush(); 
+            $this->addFlash(
+                'success',
+                'Votre tâche a bien été supprimée'
+            ); 
+        }
+        else {
+            $this->addFlash(
+                'danger',
+                "Une erreur est survenue, nous n'avons pas pu supprimer votre tâche"
+              );
         }
 
+        return $this->redirectToRoute('project_index');
+    }
+
+    /**
+     * @Route("switchStatus/{id}", name="switch_status")
+     */
+    public function switchStatus($id)
+    {
+        $entityManager = $this->getDoctrine()->getManager();
+        $task = $entityManager->getRepository(Task::class)->find($id);
+        $task->setStatus( ! $task->getStatus() );
+        $entityManager->flush();
         return $this->redirectToRoute('project_index');
     }
 }
