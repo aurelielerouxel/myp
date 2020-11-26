@@ -5,11 +5,15 @@ namespace App\Controller;
 use App\Entity\Task;
 use App\Entity\Project;
 use App\Form\TaskType;
+use App\Form\ProjectType;
 use App\Repository\TaskRepository;
+use App\Repository\ProjectRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+
 
 /**
  * @Route("/task")
@@ -27,23 +31,27 @@ class TaskController extends AbstractController
     }
 
     /**
-     * @Route("/new", name="task_new", methods={"GET","POST"})
+     * @Route("/new/{id}", name="task_new", methods={"GET","POST"})
      */
-    public function new(Request $request): Response
+    public function new(int $id, ProjectRepository $projectRepository, Request $request): Response
     {
+        $project = $projectRepository->findOneBy([
+            "id"=>$id,
+            "user"=>$this->getUser()
+        ]);
         $task = new Task();
         $form = $this->createForm(TaskType::class, $task);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $task->setProject($this->getProject());
             $task->setTaskCreationDate(new \DateTime('now'));
+            $task->setProject($project);
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($task);
             $entityManager->flush();
 
             $this->addFlash('success','Votre Tâche à bien été ajoutée à la liste.');
-            return $this->redirectToRoute('task_index');
+            return $this->redirectToRoute('project_index');
         }
 
         return $this->render('task/new.html.twig', [

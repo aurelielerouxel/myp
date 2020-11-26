@@ -19,7 +19,7 @@
                     <h6 class="card-subtitle mb-3 text-muted">Status : {{ project.projectStatus }}</h6>
                 <div class="bg-dark p-3">
                     <a href="{{ path('project_index') }}" class="card-link">Retourner sur votre liste des projets</a>
-                    <a href="{{ path('project_edit') }}" class="card-link">Modifier</a>
+                    <a href="{{ path('project_edit', {'id': project.id}) }}" class="card-link">Modifier</a>
                     <a href="#" class="card-link">Archiver</a>
                     <a href="#" class="card-link">Supprimer</a>
                     <a href="{{ path('project_edit', {'id': project.id}) }}">edit</a>
@@ -29,7 +29,7 @@
         </div>
 
         <div class="my-5 col-md-12">
-        <a href="{{ path('task_new') }}">Ajouter une nouvelle tâche.</a>
+        <a href="{{ path('task_new', {'id': project.id}) }}">Ajouter une nouvelle tâche.</a>
 
             <table class="table mt-5">
                 <thead>
@@ -44,7 +44,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                {# {% for task in tasks %}
+                {% for task in project.tasks %}
                     <tr>
                         <td>{{ task.id }}</td>
                         <td>{{ task.taskName }}</td>
@@ -61,7 +61,7 @@
                     <tr>
                         <td colspan="7">no records found</td>
                     </tr>
-                {% endfor %} #}
+                {% endfor %}
                 </tbody>
             </table>
         </div>
