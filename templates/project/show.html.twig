@@ -3,41 +3,68 @@
 {% block title %}Consulter le projet{% endblock %}
 
 {% block main %}
-    <h1>Consulter le projet : </h1>
-    <a href="{{ path('task_new') }}">Créer un nouveau projet</a>
+    <h1 class="text-center">Consulter le projet : </h1>
 
-    <table class="table">
-        <tbody>
-            {# <tr>
-                <th>Id</th>
-                <td>{{ project.id }}</td>
-            </tr> #}
-            <tr>
-                <th>Project_name</th>
-                <td>{{ project.projectName }}</td>
-            </tr>
-            <tr>
-                <th>Project_description</th>
-                <td>{{ project.projectDescription }}</td>
-            </tr>
-            <tr>
-                <th>Project_creation_date</th>
-                <td>{{ project.projectCreationDate ? project.projectCreationDate|date('Y-m-d') : '' }}</td>
-            </tr>
-            <tr>
-                <th>Project_deadline</th>
-                <td>{{ project.projectDeadline ? project.projectDeadline|date('Y-m-d H:i:s') : '' }}</td>
-            </tr>
-            <tr>
-                <th>Project_status</th>
-                <td>{{ project.projectStatus }}</td>
-            </tr>
-        </tbody>
-    </table>
+    <div class="row my-5 text-center">
+        <div class="card col-md-12 p-0">
+            <div class="card-body p-0">
+                <div class="bg-dark text-white">
+                    <h5 class="card-title p-3">{{ project.projectName }}</h5>
+                </div>
+                    <h6 class="card-subtitle mb-3 text-muted">Création : {{ project.projectCreationDate ? project.projectCreationDate|date('Y-m-d') : '' }}</h6>
+                    <h6 class="card-subtitle mb-3 text-muted">Deadline : {{ project.projectDeadline ? project.projectDeadline|date('Y-m-d H:i:s') : '' }}</h6>
+                    <hr>
+                    <p class="card-text">{{ project.projectDescription }}</p>
+                    <hr>
+                    <h6 class="card-subtitle mb-3 text-muted">Status : {{ project.projectStatus }}</h6>
+                <div class="bg-dark p-3">
+                    <a href="{{ path('project_index') }}" class="card-link">Retourner sur votre liste des projets</a>
+                    <a href="{{ path('project_edit') }}" class="card-link">Modifier</a>
+                    <a href="#" class="card-link">Archiver</a>
+                    <a href="#" class="card-link">Supprimer</a>
+                    <a href="{{ path('project_edit', {'id': project.id}) }}">edit</a>
+                    {{ include('project/_delete_form.html.twig') }}   
+                </div>
+            </div>
+        </div>
 
-    <a href="{{ path('project_index') }}">back to list</a>
+        <div class="my-5 col-md-12">
+        <a href="{{ path('task_new') }}">Ajouter une nouvelle tâche.</a>
 
-    <a href="{{ path('project_edit', {'id': project.id}) }}">edit</a>
+            <table class="table mt-5">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Task_name</th>
+                        <th>Task_description</th>
+                        <th>Task_creation_date</th>
+                        <th>Task_deadline</th>
+                        <th>Task_status</th>
+                        <th>actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {# {% for task in tasks %}
+                    <tr>
+                        <td>{{ task.id }}</td>
+                        <td>{{ task.taskName }}</td>
+                        <td>{{ task.taskDescription }}</td>
+                        <td>{{ task.taskCreationDate ? task.taskCreationDate|date('Y-m-d') : '' }}</td>
+                        <td>{{ task.taskDeadline ? task.taskDeadline|date('Y-m-d H:i:s') : '' }}</td>
+                        <td>{{ task.taskStatus }}</td>
+                        <td>
+                            <a href="{{ path('task_show', {'id': task.id}) }}">show</a>
+                            <a href="{{ path('task_edit', {'id': task.id}) }}">edit</a>
+                        </td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td colspan="7">no records found</td>
+                    </tr>
+                {% endfor %} #}
+                </tbody>
+            </table>
+        </div>
+    </div>
 
-    {{ include('project/_delete_form.html.twig') }}
 {% endblock %}
