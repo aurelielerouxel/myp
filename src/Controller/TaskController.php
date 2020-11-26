@@ -81,7 +81,7 @@ class TaskController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('task_index');
+            return $this->redirectToRoute('project_index');
         }
 
         return $this->render('task/edit.html.twig', [
@@ -99,6 +99,8 @@ class TaskController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($task);
             $entityManager->flush();
+            
+            
         }
 
         return $this->redirectToRoute('project_index');
