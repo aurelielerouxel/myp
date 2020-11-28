@@ -31,7 +31,7 @@ class ProjectRepository extends ServiceEntityRepository
                 "id"=>$id,
                 "user"=>$user
             ])
-            ->orderBy("t.taskDeadline", "DESC")
+            ->orderBy("p.projectDeadline", "DESC")
             ->getQuery()
             ->getOneOrNullResult()
         ;

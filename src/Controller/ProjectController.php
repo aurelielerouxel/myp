@@ -110,11 +110,15 @@ class ProjectController extends AbstractController
     /**
      * Require ROLE_USER for only this controller method.
      * @IsGranted("ROLE_USER")
-     * @Route("/{id}", name="project_delete", methods={"DELETE"})
+     * @Route("/{id}", name="project_delete")
      */
-    public function delete(Request $request, Project $project): Response
+    public function delete(int $id, ProjectRepository $projectRepository): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$project->getId(), $request->request->get('_token'))) {
+        try {
+            $project = $projectRepository->findOneBy([
+                "id" => $id,
+                "user" => $this->getUser()
+            ]);
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($project);
             $entityManager->flush();
@@ -122,14 +126,33 @@ class ProjectController extends AbstractController
                 'success',
                 'Votre projet a bien été supprimé'
             );
-        }
-        else {
+        } catch (\Exception $e) {
             $this->addFlash(
                 'danger',
-                "Une erreur est survenue, nous n'avons pas pu supprimer votre projet"
-              );
+                "Une erreue est survenue, nous n'avons pas pu supprimer votre projet. Veuillez réessayez ultérieurement."
+            );
         }
-
         return $this->redirectToRoute('project_index');
     }
+
+    // public function delete(Request $request, Project $project): Response
+    // {
+    //     if ($this->isCsrfTokenValid('delete'.$project->getId(), $request->request->get('_token'))) {
+    //         $entityManager = $this->getDoctrine()->getManager();
+    //         $entityManager->remove($project);
+    //         $entityManager->flush();
+    //         $this->addFlash(
+    //             'success',
+    //             'Votre projet a bien été supprimé'
+    //         );
+    //     }
+    //     else {
+    //         $this->addFlash(
+    //             'danger',
+    //             "Une erreur est survenue, nous n'avons pas pu supprimer votre projet"
+    //           );
+    //     }
+
+    //     return $this->redirectToRoute('project_index');
+    // }
 }
