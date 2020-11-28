@@ -16,4 +16,12 @@ class MypController extends AbstractController
     {
         return $this->render('myp/index.html.twig');
     }
+
+    /**
+     * @Route("/archive", name="archive")
+     */
+    public function archive(): Response
+    {
+        return $this->render('myp/archive.html.twig');
+    }
 }
