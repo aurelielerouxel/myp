@@ -18,15 +18,6 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
  */
 class ProjectController extends AbstractController
 {
-    // /**
-    //  * @Route("/acceuil", name="home")
-    //  * @Route("/", name="root")
-    //  */
-    // public function index(): Response
-    // {
-    //     return $this->render('myp/index.html.twig');
-    // }
-
 
     /**
      * Require ROLE_USER for only this controller method.

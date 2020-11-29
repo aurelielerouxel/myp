@@ -7,6 +7,21 @@
             <h1 class="display-4 animate__animated animate__bounce">Manage Your Project</h1>
             <p class="lead">Avant de construire votre projet, dessinez vos plans.</p>
         </section>
+
+        <!-- Button Lawyer -->
+        <button id="myBtn" class="btn btn-warning ml-3">Voir les conditions d'utilisation</button>
+        <!-- The Lawyer -->
+        <div id="lawyer" class="lawyer">
+            <!-- Lawyer content -->
+            <div class="lawyer-content text-dark">
+                <span class="close">&times;</span>
+                <p>CONDITIONS D'UTILISATIONS & STOCKAGE DES DONNÉES
+                    Nous récupérons et stockons toutes vos informations,
+                    et nous les revendrons au plus offrant.  
+                    "Si c'est gratuit, c'est toi le produit"
+                </p>
+            </div>
+        </div>
     </header>
 
     <nav class="nav nav-pills nav-fill mb-5 bg-danger">
@@ -19,16 +34,13 @@
         <li class="nav-item">
             <a class="nav-link text-white" href="{{ path("archive") }}">Archive</a>
         </li>
-        <li class="nav-item">
-            <a class="nav-link text-white" href="#">Disabled</a>
-        </li>
     </nav>
 
     <main class="container">
         {% block main %}{% endblock %}
     </main>
 
-    <footer class="jumbotron jumbotron-fluid bg-dark text-white">
+    <footer class="jumbotron jumbotron-fluid bg-dark text-white mb-0">
         <div class="container">
             <p class="lead">Une application développée par okALme.fr, tous droits réservés.</p>
         </div>
