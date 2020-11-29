@@ -13,20 +13,14 @@
 /* Lawyer Content */
 .lawyer-content {
   background-color: #fefefe;
-  margin: 15% auto; 
-  padding: 20px;
+  margin: 5% auto; 
+  padding: 50px;
   border: 10px solid #FFC107;
+  border-radius: 10px;
   width: 80%; 
 }
 
 /* Close Button */
-.close {
-  color: black;
-  float: right;
-  font-size: 28px;
-  font-weight: bold;
-}
-
 .close:hover,
 .close:focus {
   color: black;

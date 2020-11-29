@@ -61,16 +61,6 @@ class TaskController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="task_show", methods={"GET"})
-     */
-    public function show(Task $task): Response
-    {
-        return $this->render('task/show.html.twig', [
-            'task' => $task,
-        ]);
-    }
-
-    /**
      * @Route("/{id}/edit", name="task_edit", methods={"GET","POST"})
      */
     public function edit(Request $request, Task $task): Response
