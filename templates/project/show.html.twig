@@ -3,6 +3,12 @@
 {% block title %}Consulter le projet{% endblock %}
 
 {% block main %}
+    {% if app.user %}
+        <div class="mb-5 text-center">
+            Bonjour, vous êtes connécté sur le compte : {{ app.user.username }}, <a class="text-danger" href="{{ path('app_logout') }}">Déconnexion</a>
+        </div>
+    {% endif %}
+
     <h1 class="text-center">Consulter le projet : </h1>
 
     <div class="row my-5 text-center">
@@ -17,11 +23,12 @@
                     <p class="card-text">{{ project.projectDescription }}</p>
                     <hr>
                     <h6 class="card-subtitle mb-3 text-muted">Status : {{ project.projectStatus }}</h6>
-                <div class="bg-dark p-3">
-                    <a href="{{ path('project_index') }}" class="card-link">Retourner sur votre liste des projets</a>
+                <div class="bg-dark p-3 d-flex justify-content-around">
+                    <a href="{{ path('project_index') }}" class="card-link">Projets</a>
                     <a href="{{ path('project_edit', {'id': project.id}) }}" class="card-link">Modifier</a>
                     <a href="#" class="card-link">Archiver</a>
-                    <a href="{{ path('project_edit', {'id': project.id}) }}">Edit</a>
+                </div>
+                <div class="bg-dark text-white pb-2 justify-content-around">
                     {{ include('project/_delete_form.html.twig') }}   
                 </div>
             </div>
@@ -31,14 +38,14 @@
         <a href="{{ path('task_new', {'id': project.id}) }}">Ajouter une nouvelle tâche.</a>
 
             <table class="table mt-5">
-                <thead>
+                <thead class="thead-dark">
                     <tr>
-                        <th>Task_name</th>
-                        <th>Task_description</th>
-                        <th>Task_creation_date</th>
-                        <th>Task_deadline</th>
-                        <th>Task_status</th>
-                        <th>actions</th>
+                        <th>Tâches</th>
+                        <th>Description</th>
+                        <th>Date de création</th>
+                        <th>Deadline</th>
+                        <th>Status (O:en cours, X:terminé)</th>
+                        <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -46,8 +53,8 @@
                     <tr>
                         <td>{{ task.taskName }}</td>
                         <td>{{ task.taskDescription }}</td>
-                        <td>{{ task.taskCreationDate ? task.taskCreationDate|date('Y-m-d') : '' }}</td>
-                        <td>{{ task.taskDeadline ? task.taskDeadline|date('Y-m-d H:i:s') : '' }}</td>
+                        <td>{{ task.taskCreationDate ? task.taskCreationDate|date('d-m-Y') : '' }}</td>
+                        <td>{{ task.taskDeadline ? task.taskDeadline|date('d-m-Y H:i:s') : '' }}</td>
                         <td>{{ task.taskStatus }}</td>
                         <td>
                             <a href="{{ path('task_edit', {'id': task.id}) }}">Modifier</a>
