@@ -8,6 +8,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
+use Symfony\Component\Validator\Constraints\Length;
 
 class TaskType extends AbstractType
 {
@@ -16,6 +17,7 @@ class TaskType extends AbstractType
         $builder
             ->add('task_name', TextType::class, [
                 'required' => true,
+                'constraints' => [new Length(['max' => 50])],
                 'label' => 'Nom du projet'
                 ])
             ->add('task_description', TextType::class, [
@@ -29,6 +31,7 @@ class TaskType extends AbstractType
                 ])
             ->add('task_status', TextType::class, [
                 'required' => true,
+                'constraints' => [new Length(['max' => 1])],
                 'label' => 'Status (O : en cours, X : terminé)'
                 ])
             // ->add('project')
